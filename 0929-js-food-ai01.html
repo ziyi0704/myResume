@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>opendata地方美食資料練習ai</title>
+    <link rel="stylesheet" href="css/myall.css">
+    <style>
+        /* CSS語法 */
+        :root {
+            /* FF16 黑暗奇幻色彩系統 */
+            --ff16-bg-dark: #0d0c11;           /* 深邃的黑夜背景 */
+            --ff16-panel-bg: #151419;          /* 面板底色 */
+            --ff16-card-bg: #1c1a20;           /* 卡片底色 */
+            --ff16-text-primary: #e2dcd0;      /* 羊皮紙般的米白色文字 */
+            --ff16-text-secondary: #a39b8d;    /* 黯淡的金屬灰 */
+            --ff16-border-gold: #c3a661;       /* 羅札利亞的金色點綴 */
+            --ff16-border-dim: #3a3530;        /* 陰影邊框 */
+            --ff16-accent-red: #8b1c1c;        /* 召喚獸伊弗利特的烈焰紅 */
+            --ff16-glow-gold: rgba(195, 166, 97, 0.4); 
+            --ff16-shadow-dark: rgba(0, 0, 0, 0.8);
+            --ff16-font: "Cinzel", "Times New Roman", "Noto Serif TC", serif; /* 史詩感字體 */
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--ff16-bg-dark);
+            color: var(--ff16-text-primary);
+            font-family: var(--ff16-font);
+        }
+
+        .wrapper {
+            width: 1024px;
+            margin-top: 50px;
+            margin-bottom: 50px;
+            margin-right: auto;
+            margin-left: auto;
+            background: linear-gradient(135deg, var(--ff16-panel-bg) 0%, var(--ff16-bg-dark) 100%);
+            box-shadow: 0 0 30px var(--ff16-shadow-dark), inset 0 0 2px var(--ff16-border-gold);
+            padding: 25px;
+            overflow: hidden;
+            border: 1px solid var(--ff16-border-dim);
+            border-top: 4px solid var(--ff16-accent-red); /* 頂部烈焰紅邊框 */
+        }
+
+        .demo {
+            width: 32%;
+            background: linear-gradient(180deg, var(--ff16-card-bg) 0%, var(--ff16-panel-bg) 100%);
+            box-shadow: 4px 4px 10px var(--ff16-shadow-dark);
+            margin-top: 15px;
+            margin-bottom: 15px;
+            float: left;
+            margin-right: 1%;
+            border: 1px solid var(--ff16-border-dim);
+            transition: all 0.3s ease-in-out;
+        }
+
+        /* 懸浮時產生魔法水晶般的金色發光效果 */
+        .demo:hover {
+            border-color: var(--ff16-border-gold);
+            box-shadow: 0 0 18px var(--ff16-glow-gold);
+            transform: translateY(-4px);
+        }
+
+        .logo {
+            width: 100%;
+            height: 220px;
+            background-size: cover;
+            background-position: center;
+            border-bottom: 2px solid var(--ff16-border-gold);
+            position: relative;
+        }
+
+        /* 圖片下方加入漸層暗影，增強暗黑奇幻氛圍 */
+        .logo::after {
+            content: '';
+            position: absolute;
+            bottom: 0; 
+            left: 0; 
+            right: 0;
+            height: 40%;
+            background: linear-gradient(to bottom, transparent, var(--ff16-card-bg));
+        }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .title01 {
+            font-size: 1.15rem;
+            font-weight: bold;
+            color: var(--ff16-border-gold);
+            padding: 15px 15px 5px 15px;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 4px var(--ff16-shadow-dark);
+        }
+
+        .title02 {
+            font-size: 0.9rem;
+            color: var(--ff16-text-secondary);
+            padding: 0 15px 15px 15px;
+            letter-spacing: 1px;
+        }
+
+        @media screen and (max-width: 1024px) {
+            .wrapper {
+                width: 94%;
+                border-top: 3px solid var(--ff16-accent-red);
+            }
+            .demo {
+                width: 100%;
+                margin-right: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper" id="foodlist">
+        <div class="demo">
+            <div class="logo bg-img" style="background-image: url(images/landspace01.avif);"></div>
+            <p class="title01">店家：XXX</p>
+            <p class="title02">電話：XXXXXXXX</p>
+        </div>
+    </div>
+    </div>
+    <script src="js/jquery-4.0.0.js"></script>
+    <script src="js/food.js"></script>
+    <script>
+        console.log(food);
+        food.forEach(function(food, index){
+            // $("#demo01").append('<p class="title01">編號' + index + ' , 名稱:' + food.Name + '</p>');
+            // console.log(food.Name);
+            // console.log(food.City);
+            // console.log(food.Email);
+        });
+
+        food.forEach(function(food, index){
+            // $("#foodlist").append('<div class="demo"><div class="logo bg-img"><img src="' + food.PicURL + '" alt="Logo" class="ob-img"></div><p class="title01">店名: ' + food.Name + '</p><p class="title02">電話:' + food.Tel + '</p></div>');
+
+            $("#foodlist").append('<div class="demo"><div class="logo bg-img" style="background-image: url(' + food.PicURL + ');"></div><p class="title01">店名: ' + food.Name + '</p><p class="title02">電話:' + food.Tel + '</p></div>');
+        });
+
+    </script>
+</body>
+</html>
