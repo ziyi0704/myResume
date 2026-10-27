@@ -1,0 +1,212 @@
+@import url('https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@300;400;500;700;900&display=swap');
+
+:root {
+    /* 歡樂氛圍顏色變數定義 */
+    --color-body-bg: rgb(255, 248, 235);
+    /* 溫暖柔和奶黃背景 */
+    --color-logo-fallback: rgb(106, 212, 229);
+    /* 晴空藍預設背景 */
+    --color-nav-bg: rgb(255, 140, 105);
+    /* 活潑夕陽橘導覽列 */
+    --color-nav-item-bg: rgb(46, 52, 64);
+    /* 按鈕深色基底維持對比 */
+    --color-nav-item-text: rgb(255, 255, 224);
+    /* 柔和亮黃白文字 */
+    --color-nav-hover-shadow: rgb(255, 209, 102);
+    /* 歡樂陽光黃 hover 陰影 */
+    --bxs00: rgba(255, 107, 107, 0.4);
+    /* 繽紛紅粉陰影 */
+    --color-content-bg: rgb(255, 253, 245);
+    /* 內文白白淨淨卡片底 */
+    --color-h1-text: rgb(255, 59, 105);
+    /* 歡樂派對桃紅大標題 */
+    --color-btn-bg: rgb(255, 159, 28);
+    /* 活力亮橘按鈕 */
+    --color-btn-text: rgb(255, 255, 255);
+    /* 按鈕白字 */
+    --color-footer-bg: rgb(43, 45, 66);
+    /* 沉穩深藍灰腳本底 */
+    --color-footer-text: rgb(237, 242, 244);
+    /* 腳本亮灰白字 */
+}
+
+body {
+    font-family: "Zen Maru Gothic", sans-serif;
+}
+
+/* 字體粗細 */
+.fw100 {
+    font-weight: 100;
+}
+
+.fw200 {
+    font-weight: 200;
+}
+
+.fw300 {
+    font-weight: 300;
+}
+
+.fw400 {
+    font-weight: 400;
+}
+
+.fw500 {
+    font-weight: 500;
+}
+
+.fw600 {
+    font-weight: 600;
+}
+
+.fw700 {
+    font-weight: 700;
+}
+
+.fw800 {
+    font-weight: 800;
+}
+
+.fw900 {
+    font-weight: 900;
+}
+
+/* 標題 */
+
+.title01 {
+    font-size: 64px;
+    font-weight: 900;
+    text-align: center;
+    color: var(--color-h1-text);
+}
+
+.title02 {
+    font-size: 52px;
+    font-weight: 700;
+    text-align: center;
+    color: var(--color-h1-text);
+}
+
+.title03 {
+    font-size: 48px;
+    font-weight: 500;
+    text-align: center;
+    color: var(--color-h1-text);
+}
+
+.title04 {
+    font-size: 36px;
+    font-weight: 500;
+    text-align: center;
+    color: var(--color-h1-text);
+}
+
+/* 背景圖 */
+.bg-img {
+    background-position: center center;
+    background-size: cover;
+}
+
+.ob-img {
+    object-fit: cover;
+    object-position: center center;
+}
+
+.timeline-section {
+    position: relative;
+}
+
+.timeline-section::before {
+    position: absolute;
+    content: "";
+    width: 5px;
+    background-color: rgba(134, 39, 39, 0.8);
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%);
+}
+
+.roller-t {
+    position: relative;
+    overflow: hidden;
+}
+
+.roller-t .rollerbox-t {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(123, 123, 123, 0.5);
+    transform: translateY(-100%);
+    transition: transform 2s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.roller-t:hover .rollerbox-t {
+    transform: translateX(0);
+}
+
+.roller-b {
+    position: relative;
+    overflow: hidden;
+}
+
+.roller-b .rollerbox-b {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(123, 123, 123, 0.5);
+    transform: translateY(100%);
+    transition: transform 2s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.roller-b:hover .rollerbox-b {
+    transform: translateX(0);
+}
+
+.roller-s {
+    position: relative;
+    overflow: hidden;
+}
+
+.roller-s .rollerbox-s {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(123, 123, 123, 0.5);
+    transform: translateX(-100%);
+    transition: transform 2s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.roller-s:hover .rollerbox-s {
+    transform: translateX(0);
+}
+
+.roller-e {
+    position: relative;
+    overflow: hidden;
+}
+
+.roller-e .rollerbox-e {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(123, 123, 123, 0.5);
+    transform: translateX(100%);
+    transition: transform 2s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.roller-e:hover .rollerbox-e {
+    transform: translateX(0);
+}
