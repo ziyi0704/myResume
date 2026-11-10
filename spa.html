@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>李子奕 (Li, Zi-Yi) - 跨域 AI 全端工程師 / 智慧製造主管 個人履歷 SPA</title>
+    <!-- Bootstrap 5 CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- FontAwesome 6 CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --cyber-bg-dark: #070510;
+            --cyber-card-bg: rgba(18, 12, 38, 0.75);
+            --cyber-cyan: #00f3ff;
+            --cyber-magenta: #ff007f;
+            --cyber-yellow: #ffe600;
+        }
+
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            background-color: var(--cyber-bg-dark);
+            color: #e2e8f0;
+            scroll-behavior: smooth;
+        }
+
+        /* 導覽列與固定頁首 */
+        .navbar-custom {
+            background-color: rgba(10, 7, 20, 0.9) !important;
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(0, 243, 255, 0.2);
+        }
+
+        .nav-link {
+            color: #cbd5e1 !important;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: var(--cyber-cyan) !important;
+            text-shadow: 0 0 8px rgba(0, 243, 255, 0.6);
+        }
+
+        /* Section 通用樣式 */
+        section {
+            padding: 5rem 0;
+            position: relative;
+        }
+
+        .section-title {
+            color: var(--cyber-cyan);
+            font-weight: 900;
+            letter-spacing: 2px;
+            text-shadow: 0 0 15px rgba(0, 243, 255, 0.6);
+        }
+
+        .section-subtitle {
+            color: #94a3b8;
+            font-size: 1.05rem;
+        }
+
+        /* Section 01: Hero */
+        #sec-hero {
+            min-height: 90vh;
+            background: linear-gradient(135deg, #060212 0%, #15092b 60%, #030108 100%);
+            display: flex;
+            align-items: center;
+        }
+
+        .hero-title {
+            background: linear-gradient(90deg, #00f3ff 0%, #ff007f 50%, #ffe600 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 900;
+            filter: drop-shadow(0 0 15px rgba(255, 0, 127, 0.4));
+        }
+
+        .badge-cyber {
+            background: rgba(0, 243, 255, 0.1);
+            border: 1px solid var(--cyber-cyan);
+            color: var(--cyber-cyan);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+        }
+
+        /* Section 卡片樣式 */
+        .cyber-card {
+            background: var(--cyber-card-bg);
+            border: 1px solid rgba(0, 243, 255, 0.25);
+            border-radius: 14px;
+            padding: 2rem;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .cyber-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--cyber-magenta);
+            box-shadow: 0 15px 35px rgba(255, 0, 127, 0.25);
+        }
+
+        /* 數據大數字發光效果 */
+        .stat-num {
+            background: linear-gradient(180deg, #ffe600 0%, #ff007f 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-size: 3.2rem;
+            font-weight: 900;
+            filter: drop-shadow(0 0 10px rgba(255, 230, 0, 0.5));
+        }
+
+        /* 時間軸樣式 */
+        .timeline-item {
+            border-left: 2px solid var(--cyber-magenta);
+            padding-left: 1.5rem;
+            position: relative;
+            margin-bottom: 2rem;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -7px;
+            top: 5px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--cyber-cyan);
+            box-shadow: 0 0 10px var(--cyber-cyan);
+        }
+
+        /* 按鈕樣式 */
+        .btn-cyber-primary {
+            background: linear-gradient(135deg, #00f3ff 0%, #00a8ff 100%);
+            color: #000;
+            font-weight: 700;
+            border: none;
+            box-shadow: 0 0 15px rgba(0, 243, 255, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        .btn-cyber-primary:hover {
+            background: linear-gradient(135deg, #ff007f 0%, #d6006b 100%);
+            color: #fff;
+            box-shadow: 0 0 20px rgba(255, 0, 127, 0.6);
+        }
+
+        .btn-cyber-outline {
+            color: var(--cyber-cyan);
+            border: 1px solid var(--cyber-cyan);
+            background: transparent;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn-cyber-outline:hover {
+            background: var(--cyber-cyan);
+            color: #000;
+            box-shadow: 0 0 20px rgba(0, 243, 255, 0.8);
+        }
+
+        /* 亮黑微光照片區 */
+        .img-cyber-cover {
+            background-size: cover;
+            background-position: center;
+            border-radius: 16px;
+            border: 1px solid rgba(0, 243, 255, 0.3);
+            box-shadow: 0 0 25px rgba(0, 243, 255, 0.15);
+        }
+
+        .nested-box {
+            background: rgba(10, 5, 25, 0.8);
+            border: 1px dashed rgba(0, 243, 255, 0.4);
+            border-radius: 10px;
+            padding: 1.25rem;
+        }
+    </style>
+</head>
+
+<body data-bs-spy="scroll" data-bs-target="#navbar-main" data-bs-offset="80">
+
+    <!-- Top Social Bar (Section 01 Header Sub-bar) -->
+    <div id="sec-social-bar" class="py-2 bg-black border-bottom border-secondary">
+        <div class="container d-flex justify-content-between align-items-center">
+            <span class="small text-secondary"><i class="fa-solid fa-location-dot me-1 text-danger"></i> 台灣台中市南屯區｜待業中 (可隨時到職)</span>
+            <div>
+                <a href="mailto:a0988115210@gmail.com" class="text-light me-3"><i class="fa-solid fa-envelope"></i></a>
+                <a href="https://ziyi0704.github.io/myResume/" class="text-light me-3"><i class="fa-brands fa-github fa-lg text-info"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sticky Main Navigation -->
+    <nav id="navbar-main" class="navbar navbar-expand-xl sticky-top navbar-custom navbar-dark">
+        <div class="container">
+            <a class="navbar-brand fw-bold text-info" href="#sec-1">
+                <i class="fa-solid fa-microchip me-2 text-warning"></i>李子奕 LI, ZI-YI
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navContent">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 small">
+                    <li class="nav-item"><a class="nav-link" href="#sec-1">首頁</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#sec-2">關於我</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#sec-3">關鍵成就</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#sec-4">技術棧</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#sec-5">核心價值</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#sec-6">開發思維</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#sec-7">工作經歷</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#sec-8">學歷背景</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#sec-9">專業證照</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#sec-10">語言軟實力</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#sec-11">作品集</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#sec-12">轉型里程碑</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#sec-13">個人評價</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#sec-14">求職意向</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#sec-15">聯繫我</a></li>
+                </ul>
+                <a href="#sec-15" class="btn btn-cyber-primary btn-sm px-3 rounded-pill">與我聯繫</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Section 1: Hero / Landing Page -->
+    <section id="sec-1">
+        <div class="container">
+            <div class="row align-items-center g-5">
+                <div class="col-lg-7">
+                    <div class="d-flex flex-wrap gap-2 mb-3">
+                        <span class="badge badge-cyber"><i class="fa-solid fa-code me-1"></i> 中彰投分署全端職訓中</span>
+                        <span class="badge badge-cyber"><i class="fa-solid fa-industry me-1"></i> 10個月晉升廠長/經理</span>
+                    </div>
+                    <h1 class="display-3 hero-title mb-3">李子奕 (Li, Zi-Yi)</h1>
+                    <h3 class="text-light fw-bold mb-4">工廠管理與全端開發者 | 未來 AI 應用與智慧製造整合人才</h3>
+                    <p class="fs-5 text-secondary lh-lg mb-4">
+                        「從實體工廠管理到全端軟體開發——結合現場實務經驗與 Python/AI 技術，打造下一代智慧製造與數位應用。」
+                    </p>
+                    <div class="d-flex flex-wrap gap-3 mb-4">
+                        <a href="#sec-11" class="btn btn-cyber-primary btn-lg px-4"><i class="fa-solid fa-rocket me-2"></i>檢視作品集</a>
+                        <a href="#sec-15" class="btn btn-cyber-outline btn-lg px-4"><i class="fa-solid fa-file-arrow-down me-2"></i>聯繫 / 下載 CV</a>
+                    </div>
+                    <div class="text-secondary small">
+                        <i class="fa-solid fa-user me-2"></i>29歲｜免役｜台中市南屯區｜普通小型車、普通重型機車駕照
+                    </div>
+                </div>
+                <div class="col-lg-5 text-center">
+                    <div class="img-cyber-cover p-5 text-center" style="background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.8)), url('https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=800&q=80'); min-height: 400px;">
+                        <i class="fa-solid fa-brain-circuit fa-5x text-info mb-4"></i>
+                        <h4 class="text-warning fw-bold">全端 Web + Python + AI</h4>
+                        <p class="text-light small">具備實體製造知識與 AI 軟體應用整合能力</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 2: About Me -->
+    <section id="sec-2" class="bg-black">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-5 mb-4 mb-lg-0">
+                    <div class="img-cyber-cover p-4" style="background-image: url('https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=800&q=80'); min-height: 380px;"></div>
+                </div>
+                <div class="col-lg-7 ps-lg-5">
+                    <h2 class="section-title display-6 mb-4">關於我 (About Me)</h2>
+                    <p class="lh-lg text-light mb-3">
+                        擁有 8–9 年實體製造與系統櫃加工經驗，具備極強的學習適應力與問題解決能力。曾創下 <strong>10 個月內由基層操作員快速晉升至廠長與經理</strong> 的紀錄，擅長機台排除與團隊協調。
+                    </p>
+                    <p class="lh-lg text-secondary mb-4">
+                        為迎接數位轉型與 AI 浪潮，目前於勞動部中彰投分署參加職前訓練，全力研習前端網頁設計、後端 PHP/MySQL 及 Python 語言，目標將過往現場經驗與 AI / 全端技術相結合，邁向智慧製造與 AI 應用開發領域。
+                    </p>
+                    <div class="row g-3">
+                        <div class="col-6"><span class="badge bg-dark border border-info p-2 w-100"><i class="fa-solid fa-bolt me-1 text-warning"></i> 跨領域快速學習</span></div>
+                        <div class="col-6"><span class="badge bg-dark border border-info p-2 w-100"><i class="fa-solid fa-wrench me-1 text-success"></i> 設備故障排除</span></div>
+                        <div class="col-6"><span class="badge bg-dark border border-info p-2 w-100"><i class="fa-solid fa-users me-1 text-primary"></i> 團隊溝通與協調</span></div>
+                        <div class="col-6"><span class="badge bg-dark border border-info p-2 w-100"><i class="fa-solid fa-robot me-1 text-danger"></i> AI 全端應用整合</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 3: Core Highlights / Key Metrics -->
+    <section id="sec-3">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="section-title display-6">關鍵成就與量化數據 (Key Metrics)</h2>
+            </div>
+            <div class="row g-4 text-center">
+                <div class="col-md-3 col-6">
+                    <div class="cyber-card h-100">
+                        <div class="stat-num"><span class="counter" data-target="10">0</span><span class="fs-4">個月</span></div>
+                        <h5 class="text-light fw-bold mt-2">快速晉升軌跡</h5>
+                        <p class="text-secondary small mb-0">寶元智造零經驗入行，10個月升課長、1年升廠長、1.3年升經理。</p>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6">
+                    <div class="cyber-card h-100">
+                        <div class="stat-num"><span class="counter" data-target="13">0</span><span class="fs-4">人+</span></div>
+                        <h5 class="text-light fw-bold mt-2">團隊管理規模</h5>
+                        <p class="text-secondary small mb-0">獨立管理 13 人以上工廠團隊，負責產線調配與和諧氣氛維護。</p>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6">
+                    <div class="cyber-card h-100">
+                        <div class="stat-num"><span class="counter" data-target="9">0</span><span class="fs-4">年</span></div>
+                        <h5 class="text-light fw-bold mt-2">跨領域實戰經驗</h5>
+                        <p class="text-secondary small mb-0">涵蓋 CNC 機械加工、光學檢測、系統櫃生產與廠務營運管理。</p>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6">
+                    <div class="cyber-card h-100">
+                        <div class="stat-num"><span class="counter" data-target="100">0</span><span class="fs-4">%</span></div>
+                        <h5 class="text-light fw-bold mt-2">積極轉型決心</h5>
+                        <p class="text-secondary small mb-0">自費考取堆高機、自學日語，目前全力投注全端與 Python AI 開發。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 4: Tech Stack & Tools -->
+    <section id="sec-4" class="bg-black">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="section-title display-6">技術棧與專業技能 (Tech Stack & Tools)</h2>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="cyber-card h-100">
+                        <i class="fa-solid fa-code fa-2x text-info mb-3"></i>
+                        <h4 class="text-light fw-bold">程式語言與 Web 全端</h4>
+                        <ul class="list-unstyled text-secondary mt-3">
+                            <li><i class="fa-solid fa-check text-success me-2"></i>Python (基礎開發 & 數據處理解析)</li>
+                            <li><i class="fa-solid fa-check text-success me-2"></i>JavaScript (ES6+) & HTML5 / CSS3</li>
+                            <li><i class="fa-solid fa-check text-success me-2"></i>PHP 後端程式撰寫</li>
+                            <li><i class="fa-solid fa-check text-success me-2"></i>MySQL 關聯式資料庫設計 & SQL</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="cyber-card h-100">
+                        <i class="fa-solid fa-microchip fa-2x text-danger mb-3"></i>
+                        <h4 class="text-light fw-bold">AI 與進階開發方向</h4>
+                        <ul class="list-unstyled text-secondary mt-3">
+                            <li><i class="fa-solid fa-check text-success me-2"></i>RESTful API 設計與前端串接</li>
+                            <li><i class="fa-solid fa-check text-success me-2"></i>LLM API (OpenAI/Gemini) 整合應用</li>
+                            <li><i class="fa-solid fa-check text-success me-2"></i>RAG 知識庫問答架構理解</li>
+                            <li><i class="fa-solid fa-check text-success me-2"></i>FastAPI / Flask Python 後端進修中</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="cyber-card h-100">
+                        <i class="fa-solid fa-industry fa-2x text-warning mb-3"></i>
+                        <h4 class="text-light fw-bold">生產管理與高階硬體</h4>
+                        <ul class="list-unstyled text-secondary mt-3">
+                            <li><i class="fa-solid fa-check text-success me-2"></i>生產排程規劃、出貨進度跟催</li>
+                            <li><i class="fa-solid fa-check text-success me-2"></i>CNC 車/銑床操作與發那科程式修改</li>
+                            <li><i class="fa-solid fa-check text-success me-2"></i>蔡司三次元量床 (CMM) & RENISHAW</li>
+                            <li><i class="fa-solid fa-check text-success me-2"></i>堆高機駕駛與全廠設備障礙排除</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 5: Services & Value Provided -->
+    <section id="sec-5">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="section-title display-6">核心服務與價值主張 (Services & Value)</h2>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-6">
+                    <div class="cyber-card d-flex align-items-start">
+                        <i class="fa-solid fa-cubes-stacked fa-3x text-info me-4"></i>
+                        <div>
+                            <h4 class="text-light fw-bold">1. 全端網頁與 AI API 服務整合</h4>
+                            <p class="text-secondary mb-0">結合 Python / PHP 後端與現代化前端，打造流暢互動且具備 AI 輔助功能的 Web 應用系統。</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="cyber-card d-flex align-items-start">
+                        <i class="fa-solid fa-gears fa-3x text-warning me-4"></i>
+                        <div>
+                            <h4 class="text-light fw-bold">2. 智慧製造與工廠數位轉型</h4>
+                            <p class="text-secondary mb-0">運用製造現場實戰管理經驗與程式開發能力，扮演傳統工廠與數位/AI 系統之間的溝通橋梁。</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="cyber-card d-flex align-items-start">
+                        <i class="fa-solid fa-screwdriver-wrench fa-3x text-danger me-4"></i>
+                        <div>
+                            <h4 class="text-light fw-bold">3. 設備運維與技術問題排除</h4>
+                            <p class="text-secondary mb-0">即時診斷與處理硬體機台與軟體流程異常，降低停機風險並提升系統整體穩定性與效能。</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="cyber-card d-flex align-items-start">
+                        <i class="fa-solid fa-users-gear fa-3x text-success me-4"></i>
+                        <div>
+                            <h4 class="text-light fw-bold">4. 全廠生產排程與團隊管理</h4>
+                            <p class="text-secondary mb-0">靈活調配生產資源與人力，注重團隊和諧氣氛，驅動專案與訂單高效率、高品質交付。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 6: Operations & Work Methodology -->
+    <section id="sec-6" class="bg-black">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="section-title display-6">開發與管理思維 (Work Methodology)</h2>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-3">
+                    <div class="cyber-card text-center h-100">
+                        <span class="badge bg-info text-dark fw-bold mb-3 fs-6">Step 01</span>
+                        <h5 class="text-light fw-bold">需求釐清與痛點診斷</h5>
+                        <p class="text-secondary small">深入現場或業務端，精準抓出實質運作與軟硬體系統瓶頸。</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="cyber-card text-center h-100">
+                        <span class="badge bg-warning text-dark fw-bold mb-3 fs-6">Step 02</span>
+                        <h5 class="text-light fw-bold">技術選型與架構規劃</h5>
+                        <p class="text-secondary small">結合前後端、資料庫與 Python/AI 工具進行最佳化系統設計。</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="cyber-card text-center h-100">
+                        <span class="badge bg-danger text-light fw-bold mb-3 fs-6">Step 03</span>
+                        <h5 class="text-light fw-bold">實作開發與流程對接</h5>
+                        <p class="text-secondary small">編寫高效能程式碼，同步優化實體產線與軟體系統流程。</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="cyber-card text-center h-100">
+                        <span class="badge bg-success text-light fw-bold mb-3 fs-6">Step 04</span>
+                        <h5 class="text-light fw-bold">持續反饋與團隊溝通</h5>
+                        <p class="text-secondary small">維護良好團隊氛圍，依據實際運作數據進行持續疊代優化。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 7: Work Experience & Training -->
+    <section id="sec-7">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="section-title display-6">工作與進修經歷 (Work Experience)</h2>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <div class="timeline-item">
+                        <span class="badge bg-info text-dark fw-bold">在訓中 (現階段)</span>
+                        <h4 class="text-light fw-bold mt-2">全端網頁與 Python 開發職訓｜勞動部中彰投分署</h4>
+                        <p class="text-secondary mb-1">職前專務訓練｜前端 HTML/CSS/JS、後端 PHP/MySQL、Python 開發與 API 整合基礎。</p>
+                    </div>
+
+                    <div class="timeline-item">
+                        <span class="badge bg-warning text-dark fw-bold">2023/07 - 2025/11 (2年5個月)</span>
+                        <h4 class="text-light fw-bold mt-2">經理 / 廠長 / 課長｜寶元智造股份有限公司 (寶元數控母公司)</h4>
+                        <p class="text-secondary mb-1">月薪 70,000 元 / 年薪 900,000 元｜管理 13 人以上團隊</p>
+                        <ul class="text-secondary small">
+                            <li><strong>快速晉升：</strong> 零經驗入行，10 個月升課長 ➔ 1 年升廠長 ➔ 1.3 年升經理。</li>
+                            <li><strong>廠務營運：</strong> 全權負責產線規劃、生產排程、工廠出貨與現場機台故障排除。</li>
+                        </ul>
+                    </div>
+
+                    <div class="timeline-item">
+                        <span class="badge bg-secondary">2025/11 - 2026/06 (8個月)</span>
+                        <h4 class="text-light fw-bold mt-2">技術人員｜傑利系統有限公司</h4>
+                        <p class="text-secondary small mb-0">系統櫃生產與廠內生產技術機動支援，各種加工機台操作與精度品質控管。</p>
+                    </div>
+
+                    <div class="timeline-item">
+                        <span class="badge bg-secondary">2023/04 - 2023/06 (3個月)</span>
+                        <h4 class="text-light fw-bold mt-2">助理工程師｜伯特光電股份有限公司</h4>
+                        <p class="text-secondary small mb-0">精密加工圖面解讀；使用 RENISHAW、高度計、顯微鏡與工具顯微鏡進行品質檢驗。</p>
+                    </div>
+
+                    <div class="timeline-item">
+                        <span class="badge bg-secondary">2022/08 - 2023/03 (8個月)</span>
+                        <h4 class="text-light fw-bold mt-2">CNC 副技師｜漢鐘精機股份有限公司</h4>
+                        <p class="text-secondary small mb-0">CNC 車/銑床操作、補正改程式、試加工抓座標；操作蔡司三次元量床 (CMM) 及模具校正。</p>
+                    </div>
+
+                    <div class="timeline-item">
+                        <span class="badge bg-secondary">2021/03 - 2022/05 (1年3個月)</span>
+                        <h4 class="text-light fw-bold mt-2">CNC 作業員｜台灣油研股份有限公司 (日商)</h4>
+                        <p class="text-secondary small mb-0">FANUC 程式修改與刀具補正；自費考取堆高機執照支援物流；自主學習日語提升職場溝通。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 8: Education & Training -->
+    <section id="sec-8" class="bg-black">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="section-title display-6">學歷與訓練背景 (Education & Training)</h2>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="cyber-card h-100">
+                        <i class="fa-solid fa-graduation-cap fa-2x text-info mb-3"></i>
+                        <h5 class="text-light fw-bold">勞動部中彰投分署</h5>
+                        <p class="text-warning small">全端網頁與 Python 開發職訓 (在訓中)</p>
+                        <p class="text-secondary small mb-0">扎實學習前端 HTML/CSS/JS、後端 PHP/MySQL 資料庫設計與 Python API 開發。</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="cyber-card h-100">
+                        <i class="fa-solid fa-university fa-2x text-warning mb-3"></i>
+                        <h5 class="text-light fw-bold">國立臺中科技大學</h5>
+                        <p class="text-secondary small">多媒體設計、應用日語系 (四技肄業)</p>
+                        <p class="text-secondary small mb-0">奠定多媒體視覺溝通設計思維與日語聽說讀寫基礎。</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="cyber-card h-100">
+                        <i class="fa-solid fa-school fa-2x text-danger mb-3"></i>
+                        <h5 class="text-light fw-bold">私立新民高中</h5>
+                        <p class="text-secondary small">資訊科 (畢業)</p>
+                        <p class="text-secondary small mb-0">早期資訊硬體、電子電路與基本程式設計啟蒙。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 9: Certifications & Licenses -->
+    <section id="sec-9">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="section-title display-6">專業認證與證照 (Certifications)</h2>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="cyber-card text-center h-100">
+                        <i class="fa-solid fa-truck-ramp-box fa-3x text-warning mb-3"></i>
+                        <h5 class="text-light fw-bold">重機械操作/修護證照</h5>
+                        <p class="text-info mb-0">堆高機操作技術士</p>
+                        <small class="text-secondary">中國勞工安全衛生管理學會核發</small>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="cyber-card text-center h-100">
+                        <i class="fa-solid fa-language fa-3x text-info mb-3"></i>
+                        <h5 class="text-light fw-bold">語言能力證照</h5>
+                        <p class="text-info mb-0">JLPT N3 (日檢檢定合格)</p>
+                        <small class="text-secondary">日本國際教育支援協會 / LTTC</small>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="cyber-card text-center h-100">
+                        <i class="fa-solid fa-id-card fa-3x text-danger mb-3"></i>
+                        <h5 class="text-light fw-bold">交通駕照</h5>
+                        <p class="text-info mb-0">普通小型車駕照 / 普通重型機車駕照</p>
+                        <small class="text-secondary">具備良好通勤與出差移動力</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 10: Language & Soft Skills -->
+    <section id="sec-10" class="bg-black">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="section-title display-6">語言能力與核心軟實力 (Skills)</h2>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-6">
+                    <div class="cyber-card h-100">
+                        <h4 class="text-light fw-bold mb-4"><i class="fa-solid fa-language text-info me-2"></i>語言能力</h4>
+                        <div class="mb-3">
+                            <div class="d-flex justify-content-between text-secondary"><span>中文 (母語)</span><span class="text-success">精通</span></div>
+                            <div class="progress bg-dark" style="height: 8px;"><div class="progress-bar bg-success" style="width: 100%"></div></div>
+                        </div>
+                        <div class="mb-3">
+                            <div class="d-flex justify-content-between text-secondary"><span>台語</span><span class="text-info">中等</span></div>
+                            <div class="progress bg-dark" style="height: 8px;"><div class="progress-bar bg-info" style="width: 75%"></div></div>
+                        </div>
+                        <div class="mb-3">
+                            <div class="d-flex justify-content-between text-secondary"><span>日語 (JLPT N3合格)</span><span class="text-info">中等</span></div>
+                            <div class="progress bg-dark" style="height: 8px;"><div class="progress-bar bg-info" style="width: 70%"></div></div>
+                        </div>
+                        <div>
+                            <div class="d-flex justify-content-between text-secondary"><span>英語</span><span class="text-secondary">略懂</span></div>
+                            <div class="progress bg-dark" style="height: 8px;"><div class="progress-bar bg-secondary" style="width: 40%"></div></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="cyber-card h-100">
+                        <h4 class="text-light fw-bold mb-4"><i class="fa-solid fa-brain text-danger me-2"></i>核心軟實力</h4>
+                        <ul class="list-unstyled text-secondary lh-lg">
+                            <li><i class="fa-solid fa-lightbulb text-warning me-2"></i><strong>跨領域極速學習：</strong> 能在最短時間內吸收新技術（如 10 個月掌握工廠經理職掌、職訓學習全端+Python）。</li>
+                            <li><i class="fa-solid fa-comments text-info me-2"></i><strong>團隊凝聚力與溝通：</strong> 重視職場工作氣氛維護，擅長跨部門與上下級協調。</li>
+                            <li><i class="fa-solid fa-bug text-danger me-2"></i><strong>雙重問題排除能力：</strong> 兼具實體硬體機台與軟體系統邏輯的 Debug 能力。</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 11: AI & Software Project Portfolio -->
+    <section id="sec-11">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="section-title display-6">專案與作品集預留區 (Portfolio)</h2>
+                <p class="section-subtitle">展示於中彰投分署職訓期間及自主開發之 AI / 全端專案</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-6">
+                    <div class="cyber-card h-100">
+                        <span class="badge bg-danger mb-2">AI / RAG 專案</span>
+                        <h4 class="text-light fw-bold">專案 1：智慧工廠 / 企業內部 AI 知識庫問答系統</h4>
+                        <p class="text-secondary small">結合 Web 前端介面與 Python (FastAPI/LangChain) 串接 OpenAI API，實現上傳 PDF/Markdown 文件後由 AI 精準檢索與回答。</p>
+                        <div class="mb-3">
+                            <span class="badge bg-dark border me-1">Python</span>
+                            <span class="badge bg-dark border me-1">FastAPI</span>
+                            <span class="badge bg-dark border me-1">LLM API</span>
+                            <span class="badge bg-dark border">Vue/React</span>
+                        </div>
+                        <a href="#" class="btn btn-cyber-outline btn-sm w-100"><i class="fa-solid fa-arrow-up-right-from-square me-1"></i>查看專案細節 (Github / Demo)</a>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="cyber-card h-100">
+                        <span class="badge bg-info text-dark mb-2">Web 全端專案</span>
+                        <h4 class="text-light fw-bold">專案 2：全端動態網頁與生產數據管理系統</h4>
+                        <p class="text-secondary small">利用 PHP + MySQL 設計後端 CRUD 管理 API，前端搭配 HTML5/CSS3/JS 提供現代化數據控制台與即時進度看板。</p>
+                        <div class="mb-3">
+                            <span class="badge bg-dark border me-1">PHP</span>
+                            <span class="badge bg-dark border me-1">MySQL</span>
+                            <span class="badge bg-dark border me-1">JavaScript</span>
+                            <span class="badge bg-dark border">Bootstrap 5</span>
+                        </div>
+                        <a href="#" class="btn btn-cyber-outline btn-sm w-100"><i class="fa-solid fa-arrow-up-right-from-square me-1"></i>查看專案細節 (Github / Demo)</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 12: Growth & Milestones Timeline -->
+    <section id="sec-12" class="bg-black">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="section-title display-6">個人成長與轉型里程碑 (Milestones)</h2>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="nested-box">
+                        <ul class="list-unstyled mb-0">
+                            <li class="mb-3 pb-3 border-bottom border-secondary">
+                                <strong class="text-warning">2021 年：</strong> 進入日商台灣油研，展現強烈學習慾，自費考取堆高機證照，自主學習日語。
+                            </li>
+                            <li class="mb-3 pb-3 border-bottom border-secondary">
+                                <strong class="text-info">2022 年：</strong> 於漢鐘精機掌握蔡司三次元量床 (CMM) 高階試加工與模具校正技巧。
+                            </li>
+                            <li class="mb-3 pb-3 border-bottom border-secondary">
+                                <strong class="text-danger">2024 年：</strong> 於寶元智造創下 10 個月內由基層躍升為廠長與經理的紀錄，管理 13 人團隊。
+                            </li>
+                            <li class="mb-0">
+                                <strong class="text-success">2026 年：</strong> 進入勞動部中彰投分署研習全端網頁與 Python，全面邁向 AI 應用開發與軟體工程轉型。
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 13: Testimonials & Personal Evaluation -->
+    <section id="sec-13">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="section-title display-6">個人評價與工作態度 (Testimonials)</h2>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="cyber-card h-100">
+                        <i class="fa-solid fa-quote-left fa-2x text-info mb-3"></i>
+                        <h5 class="text-light fw-bold">極強的學習適應力</h5>
+                        <p class="text-secondary small">「零經驗入行也能迅速掌握關鍵機台技術與產線細節，轉戰軟體與 AI 領域同樣展現極高學習潛力。」</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="cyber-card h-100">
+                        <i class="fa-solid fa-quote-left fa-2x text-warning mb-3"></i>
+                        <h5 class="text-light fw-bold">主動積極與問題解決</h5>
+                        <p class="text-secondary small">「主動積極，願意承擔分內之外的工作，是產線與團隊中最令人安心的問題解決者。」</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="cyber-card h-100">
+                        <i class="fa-solid fa-quote-left fa-2x text-danger mb-3"></i>
+                        <h5 class="text-light fw-bold">優秀的團隊溝通</h5>
+                        <p class="text-secondary small">「具備出色的溝通技巧，能有效維護團隊良好的工作氣氛並帶動整體工作效率。」</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 14: Job Preferences & Career Goals -->
+    <section id="sec-14" class="bg-black">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="section-title display-6">求職意向與職涯目標 (Job Preferences)</h2>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <div class="cyber-card">
+                        <div class="row g-4">
+                            <div class="col-md-6">
+                                <h5 class="text-info fw-bold"><i class="fa-solid fa-briefcase me-2"></i>求職條件與地點</h5>
+                                <ul class="list-unstyled text-secondary small lh-lg">
+                                    <li><strong>希望職稱：</strong> AI 應用開發工程師 / 全端工程師 / 智慧製造生產主管</li>
+                                    <li><strong>工作性質：</strong> 全職 (日班、大夜班、週休二日、可配合輪班)</li>
+                                    <li><strong>希望待遇：</strong> 月薪 50,000 元以上</li>
+                                    <li><strong>希望地點：</strong> 台中市西屯區、台中市南屯區 (對遠端工作亦有意願)</li>
+                                </ul>
+                            </div>
+                            <div class="col-md-6">
+                                <h5 class="text-warning fw-bold"><i class="fa-solid fa-bullseye me-2"></i>職涯發展目標</h5>
+                                <p class="text-secondary small lh-lg mb-0">
+                                    <strong>短期目標：</strong> 精通 Python、全端網頁與 LLM API 串接技術，完成優質 AI 應用專案。<br>
+                                    <strong>中長期目標：</strong> 致力於將 AI 應用、軟體系統與製造業現場做深入整合，推動智慧製造數位轉型。
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 15: Contact & Action Footer -->
+    <section id="sec-15">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="section-title display-6">聯繫方式與留言 (Contact Me)</h2>
+            </div>
+            <div class="row g-4">
+                <div class="col-lg-6">
+                    <div class="cyber-card h-100">
+                        <h4 class="text-light fw-bold mb-4">線上留言 / 面試邀請</h4>
+                        <form>
+                            <div class="mb-3">
+                                <label for="name" class="form-label text-secondary">您的姓名 / 寶號</label>
+                                <input type="text" class="form-control bg-dark text-light border-secondary" id="name" placeholder="請輸入姓名">
+                            </div>
+                            <div class="mb-3">
+                                <label for="email" class="form-label text-secondary">電子郵件 (Email)</label>
+                                <input type="email" class="form-control bg-dark text-light border-secondary" id="email" placeholder="name@example.com">
+                            </div>
+                            <div class="mb-3">
+                                <label for="subject" class="form-label text-secondary">洽談主題</label>
+                                <select class="form-select bg-dark text-light border-secondary" id="subject">
+                                    <option selected disabled>-- 請選擇主題 --</option>
+                                    <option value="interview">面試邀請</option>
+                                    <option value="project">專案合作</option>
+                                    <option value="other">一般詢問</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="message" class="form-label text-secondary">訊息內容</label>
+                                <textarea class="form-control bg-dark text-light border-secondary" id="message" rows="4" placeholder="請輸入您想溝通的內容..."></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-cyber-primary w-100 py-2"><i class="fa-solid fa-paper-plane me-2"></i>送出訊息</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="cyber-card h-100 d-flex flex-column justify-content-between">
+                        <div>
+                            <h4 class="text-light fw-bold mb-3">直接聯絡資訊</h4>
+                            <p class="text-secondary"><i class="fa-solid fa-phone text-info me-2"></i><strong>電話：</strong> 0988-115-210 / (0988)115-210</p>
+                            <p class="text-secondary"><i class="fa-solid fa-envelope text-warning me-2"></i><strong>Email：</strong> a0988115210@gmail.com</p>
+                            <p class="text-secondary"><i class="fa-solid fa-location-dot text-danger me-2"></i><strong>通訊地址：</strong> 台中市南屯區</p>
+                            <p class="text-secondary"><i class="fa-solid fa-clock text-success me-2"></i><strong>可聯絡時間：</strong> 週一至週日 09:00 - 21:00</p>
+                            <p class="text-secondary"><i class="fa-solid fa-car text-primary me-2"></i><strong>交通工具：</strong> 具普通小型車、普通重型機車駕照</p>
+                        </div>
+                        <div class="pt-3 border-top border-secondary mt-3">
+                            <h5 class="text-light fw-bold mb-3">快捷聯繫</h5>
+                            <div class="d-flex gap-3">
+                                <a href="mailto:a0988115210@gmail.com" class="btn btn-cyber-outline btn-sm flex-fill"><i class="fa-solid fa-envelope me-1"></i>寄送 Email</a>
+                                <a href="tel:0988115210" class="btn btn-cyber-outline btn-sm flex-fill"><i class="fa-solid fa-phone me-1"></i>電話撥打</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-4 bg-black border-top border-secondary text-center text-secondary small">
+        <div class="container">
+            <p class="mb-0">© 2026 Li, Zi-Yi (李子奕). All Rights Reserved. Designed for SPA Portfolio.</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5 JS Bundle CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Counter-Up IntersectionObserver Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const counters = document.querySelectorAll('.counter');
+            let animated = false;
+
+            const animateCounters = () => {
+                counters.forEach(counter => {
+                    const target = +counter.getAttribute('data-target');
+                    const duration = 1600; // 動畫持續時間 (毫秒)
+                    const frameDuration = 1000 / 60; // 60 FPS
+                    const totalFrames = Math.round(duration / frameDuration);
+                    let frame = 0;
+
+                    const timer = setInterval(() => {
+                        frame++;
+                        const progress = frame / totalFrames;
+                        // 緩速遞減演算法 (Ease-out Quad) 讓數字滾動遞增更流暢自然
+                        const currentVal = Math.round(target * (1 - Math.pow(1 - progress, 2)));
+                        counter.innerText = currentVal;
+
+                        if (frame >= totalFrames) {
+                            counter.innerText = target;
+                            clearInterval(timer);
+                        }
+                    }, frameDuration);
+                });
+            };
+
+            const observerOptions = {
+                threshold: 0.3
+            };
+
+            const observer = new IntersectionObserver((entries, obs) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting && !animated) {
+                        animated = true;
+                        animateCounters();
+                        obs.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            const sec3 = document.getElementById('sec-3');
+            if (sec3) {
+                observer.observe(sec3);
+            }
+        });
+    </script>
+</body>
+
+</html>
